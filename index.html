@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ela's Memorable Events | Event Planner in Delft, Cape Town</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Georgia,serif}
+body{background:#FFF9F2;color:#2b1a12;line-height:1.6;font-family:'Segoe UI',Arial,sans-serif}
+a{text-decoration:none}
+.topstrip{background:#3A0A1A;color:#fff;padding:9px 14px;text-align:center;font-size:13px;letter-spacing:.3px}
+.topstrip b{color:#D4AF37}
+header{position:sticky;top:0;background:#fff;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;box-shadow:0 2px 14px rgba(58,10,26,.15);z-index:20;border-bottom:2px solid #D4AF37}
+.logo{cursor:pointer;display:flex;align-items:center;gap:10px}
+.logo-mark{width:48px;height:48px;background:#7A1230;color:#FFD700;display:grid;place-items:center;font-size:22px;border-radius:50%;border:2px solid #D4AF37}
+.logo b{font-size:19px;color:#3A0A1A;line-height:1;display:block;font-family:Georgia,serif}
+.logo span{font-size:10px;letter-spacing:2px;color:#A67C00;font-weight:900}
+nav{display:flex;gap:6px}
+nav button{border:none;background:#FFF0E0;color:#3A0A1A;padding:10px 14px;border-radius:999px;font-weight:800;font-size:13px;cursor:pointer}
+nav button.active{background:#7A1230;color:#fff}
+.btn{background:#7A1230;color:#fff;padding:14px 20px;border-radius:999px;font-weight:900;display:inline-block;border:none;cursor:pointer;font-size:15px;text-align:center}
+.btn-gold{background:#D4AF37;color:#000}.btn-dark{background:#3A0A1A;color:#fff}.btn-green{background:#25D366;color:#fff}.btn-grey{background:#FBEED0;color:#111}
+.page{display:none}.page.active{display:block}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;max-width:900px;margin:0 auto;padding:28px 16px;align-items:center}
+.hero h1{font-size:38px;line-height:1.05;color:#3A0A1A;font-family:Georgia,serif}
+.hero h1 i{color:#A67C00;font-style:italic}
+.hero p{margin:12px 0 18px;color:#5a3a2a;font-size:17px}
+.hero-card{background:#3A0A1A;color:#fff;padding:20px;border-radius:18px;border:3px solid #D4AF37}
+.hero-card h3{color:#FFD700;font-size:20px}
+.hero-card p{color:#fff;font-size:14px;margin:8px 0}
+.hero-card .row{display:flex;justify-content:space-between;border-bottom:1px dashed rgba(255,255,255,.3);padding:7px 0;font-size:14px}
+.pill{display:inline-block;background:#FFD700;color:#000;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:900}
+.section{padding:28px 16px;max-width:900px;margin:0 auto}
+.section h2{font-size:28px;color:#3A0A1A;font-family:Georgia,serif;margin-bottom:6px}
+.section p.sub{color:#777;margin-bottom:16px}
+.h-card{display:flex;gap:14px;background:#fff;border:1px solid #F5E0C0;border-left:6px solid #D4AF37;padding:16px;border-radius:14px;margin-bottom:12px;align-items:flex-start}
+.h-card .icon{font-size:36px}
+.h-card h3{color:#3A0A1A;font-size:18px}
+.h-card p{font-size:14px;color:#666}
+.h-card .price{font-weight:900;color:#7A1230;margin-top:6px}
+.price-box{background:#FFF5D6;border:2px solid #D4AF37;padding:14px;border-radius:12px;margin-top:12px;font-size:15px}
+.quote{background:#7A1230;color:#fff;padding:22px;border-radius:18px;text-align:center}
+.quote p{font-size:19px;font-family:Georgia,serif;font-style:italic;line-height:1.5}
+.quote span{color:#FFD700;font-size:13px;font-weight:800}
+.review{background:#fff;border:1px solid #F5E0C0;border-radius:14px;padding:16px;margin-bottom:10px}
+.stars{color:#E9A800;font-size:18px}
+input,select,textarea{width:100%;padding:14px;border-radius:12px;border:2px solid #EAD9A8;margin:6px 0 10px;font-size:16px}
+input[type=checkbox]{width:22px;height:22px;accent-color:#7A1230}
+label{font-size:13px;font-weight:800;color:#3A0A1A}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:#FFF0E0;padding:7px 11px;border-radius:999px;font-size:13px;font-weight:700;border:1px solid #EAD9A8}
+.gallery{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.gallery div{border-radius:14px;height:115px;display:grid;place-items:center;font-size:30px;background:#FFF0E0;border:1px solid #EAD9A8;overflow:hidden}
+.gallery img{width:100%;height:100%;object-fit:cover}
+footer{background:#3A0A1A;color:#fff;padding:26px 16px;text-align:center;font-size:14px;border-top:4px solid #D4AF37}
+footer a{color:#FFD700}
+.float{position:fixed;bottom:16px;right:16px;background:#25D366;color:#fff;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;font-size:28px;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:30}
+.admin-box{background:#fff;border:3px solid #7A1230;border-radius:18px;padding:20px;margin:16px auto;max-width:760px}
+.admin-card{background:#FFF9F2;border:1px solid #EAD9A8;border-radius:12px;padding:12px;margin-bottom:10px}
+.small{font-size:12px;color:#888}
+.team-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.team-card{background:#fff;border:2px solid #F5E0C0;border-radius:14px;padding:14px;text-align:center}
+.team-card img{width:88px;height:88px;object-fit:cover;border-radius:50%;border:3px solid #D4AF37}
+.team-avatar{width:88px;height:88px;border-radius:50%;background:#7A1230;color:#FFD700;display:grid;place-items:center;font-size:30px;font-weight:900;margin:0 auto;border:3px solid #3A0A1A}
+.upload-preview{width:100%;max-height:150px;object-fit:contain;background:#fff;border:1px dashed #ccc;border-radius:10px;margin:6px 0}
+.toggle-box{background:#FFF0E0;border:2px solid #D4AF37;border-radius:12px;padding:14px;display:flex;align-items:center;gap:10px}
+@media(max-width:640px){.hero{grid-template-columns:1fr}.hero h1{font-size:30px}.gallery{grid-template-columns:1fr 1fr}.team-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div id="site">
+<div class="topstrip">ELA'S MEMORABLE EVENTS - <b>4.9 Stars (17 Reviews)</b> - Women-Owned - Delft, Cape Town</div>
+<header>
+<div class="logo" onclick="goPage('home')"><div class="logo-mark">E</div><div><b>Ela's Memorable</b><b>Events</b><span>DELFT • CAPE TOWN</span></div></div>
+<nav><button id="btn-home" class="active" onclick="goPage('home')">Home & Services</button><button id="btn-book" onclick="goPage('book')">Gallery & Book</button></nav>
+</header>
+
+<div id="page-home" class="page active">
+<section class="hero">
+<div>
+<span class="pill">EVENT PLANNER - DELFT - 4.9 RATED</span>
+<h1>We Make Your Day <i>Memorable.</i></h1>
+<p>Birthdays, matric balls, weddings, baby showers and family celebrations. Ela knows how to put a smile on her clients. Today we celebrate love, family and...</p>
+<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-gold" onclick="goPage('book')">Book Your Event</button><button class="btn btn-dark" onclick="goPage('home')">See Services Below</button></div>
+<div class="chips" style="margin-top:14px"><span>Women-Owned</span><span>LGBTQ+ Friendly</span><span>Transgender Safe Space</span><span>Wheelchair Accessible</span></div>
+</div>
+<div class="hero-card">
+<h3>Ela's Memorable Events</h3>
+<p>Event planner in Delft. On-site services, online appointments.</p>
+<div class="row"><span>Rating</span><b>4.9 Stars (17)</b></div>
+<div class="row"><span>Address</span><b>28 Sandelhout St, Delft</b></div>
+<div class="row"><span>Hours</span><b>Open - Closes 12am</b></div>
+<div class="row"><span>Popular</span><b>Fridays - Book Early</b></div>
+<div class="row"><span>Planning</span><b>Appointment Required</b></div>
+<button class="btn btn-gold" style="width:100%;margin-top:14px" onclick="goPage('book')">Check Availability</button>
+</div>
+</section>
+
+<section class="section">
+<h2>What We Do For You</h2>
+<p class="sub">All setup, decor, tables and styling — you just arrive and celebrate.</p>
+<div id="servicesList"></div>
+<div class="price-box" id="specialHomeBox" style="display:none"><b>This Week Special:</b> <span id="specialHome"></span></div>
+</section>
+
+<section class="section">
+<div class="quote"><p>"Ela's Memorable Events is the best you won't go wrong with her. Just try her, she knows how to put a smile on her clients."</p><br><span>- BERITAH MUBAIWA - GOOGLE REVIEW</span></div>
+</section>
+
+<section class="section">
+<h2>What Clients Say - 4.9 Stars</h2>
+<div class="review"><div class="stars">★★★★★</div><p><b>Thank you Elah, your service was amazing, and you make our matric prince's day a memorable day.</b></p><p style="font-size:13px;color:#777">- Tariro Matiya</p></div>
+<div class="review"><div class="stars">★★★★★</div><p><b>Thank you so much Ela's memorable events for making my birthday setup so memorable. You did the setup beyond my expectations, you are the best.</b></p><p style="font-size:13px;color:#777">- Rumbi Mugwambi</p></div>
+<div class="review"><div class="stars">★★★★★</div><p><b>Very good work with love keep it up ELA.</b></p><p style="font-size:13px;color:#777">- Nyasha Esther Kaseke</p></div>
+<div style="text-align:center"><a href="https://www.google.com/maps/search/?api=1&amp;query=Ela+Memorable+Events+Delft+Cape+Town" target="_blank" style="color:#7A1230;font-weight:800">See All 17 Reviews On Google</a></div>
+</section>
+</div>
+
+<div id="page-book" class="page">
+<section class="section">
+<h2>Gallery - Our Setups</h2>
+<p class="sub">White, gold and burgundy setups — birthday, matric, wedding and family events.</p>
+<div class="gallery" id="galleryAll"></div>
+</section>
+<section class="section">
+<h2>Meet The Team</h2>
+<div class="team-grid" id="teamGrid"></div>
+</section>
+<section class="section">
+<form onsubmit="sendWhatsApp(event)" style="background:#3A0A1A;color:#fff;padding:22px;border-radius:20px;border:3px solid #D4AF37">
+<h2 style="color:#fff">Book Your Event</h2>
+<p style="font-size:14px;opacity:.9;margin-bottom:12px">Fill in 30 seconds. Goes straight to Ela on WhatsApp. Appointment required.</p>
+<label style="color:#fff">Your Name</label><input id="name" required>
+<label style="color:#fff">Your WhatsApp Number</label><input id="clientPhone" inputmode="numeric">
+<label style="color:#fff">What Event Do You Need?</label><select id="serviceSelect"></select>
+<label style="color:#fff">Event Type</label><select id="etype"><option>Birthday</option><option>Matric Ball / Matric Prince</option><option>Wedding</option><option>Baby Shower</option><option>Family Celebration</option><option>Other</option></select>
+<label style="color:#fff">Colours You Like</label><select id="colours"><option>White + Gold + Burgundy - Like Photo</option><option>White + Gold</option><option>Pink + Gold</option><option>Blue + Silver</option><option>Other - Tell Us</option></select>
+<label style="color:#fff">How Many Guests?</label><select id="guests"><option>Up to 20</option><option>20 - 50</option><option>50 - 100</option><option>100+</option></select>
+<label style="color:#fff">Event Date</label><input id="date" type="date">
+<label style="color:#fff">Where Is Event?</label><select id="where"><option>28 Sandelhout St, Delft</option><option>My Home - Delft</option><option>Hall / Venue - Tell Us</option><option>Other</option></select>
+<label style="color:#fff">Tell Us Your Dream Setup</label><textarea id="msg" rows="3" placeholder="e.g. Birthday setup for my daughter, pink and gold, 30 guests"></textarea>
+<button class="btn btn-gold" style="width:100%;font-size:17px;color:#000" type="submit">Send Booking On WhatsApp</button>
+<p style="text-align:center;margin-top:10px;font-size:14px">Or Call: <b id="callText">074 429 4344</b></p>
+</form>
+</section>
+<section class="section">
+<h2>Find Us</h2>
+<p><b>Address:</b> 28 Sandelhout St, Delft, Cape Town, 7100<br><b>Code:</b> 2J7P+HR Delft, Cape Town<br><b>Hours:</b> Open - Closes 12am<br><b>Service:</b> Online appointments, On-site services<br><b>Accessibility:</b> Wheelchair-accessible car park, seating and toilet. Gender-neutral toilets.</p>
+<div class="chips"><span>Delft</span><span>Delft South</span><span>Blue Downs</span><span>Belhar</span><span>Mfuleni</span></div><br>
+<a class="btn btn-dark" href="https://www.google.com/maps/search/?api=1&amp;query=Ela+Memorable+Events+28+Sandelhout+St+Delft+Cape+Town" target="_blank">Find On Google Maps</a>
+</section>
+</div>
+
+<footer>
+<h3 style="color:#fff">ELA'S MEMORABLE EVENTS</h3>
+<p>Event Planner - 4.9 Stars (17 Reviews) - Delft, Cape Town</p>
+<p style="margin-top:10px">28 Sandelhout St, Delft, Cape Town, 7100<br>Open - Closes 12am - Appointment Required</p>
+<p style="margin-top:10px"><a id="footerWhatsApp" href="#">WhatsApp Us</a> - <a id="footerCall" href="#">Call Us</a> - <a href="#admin" onclick="showAdmin()">Owner Login</a></p>
+<p style="opacity:.6;margin-top:12px;font-size:12px">Website built by Avatar Web Store - 2026 Ela's Memorable Events</p>
+</footer>
+<a class="float" id="floatWhatsApp" href="#" target="_blank">💬</a>
+</div>
+
+<div id="admin" style="display:none;background:#FFF9F2;min-height:100vh;padding:16px">
+<div class="admin-box">
+<h2 style="color:#3A0A1A">Owner Dashboard</h2><p class="small">Ela's Memorable Events</p>
+<div id="loginBox" style="margin-top:16px"><label>Your Phone Number</label><input id="loginPhone" inputmode="numeric"><label>Password</label><input id="loginPass" type="password" inputmode="numeric"><button class="btn" style="width:100%" onclick="doLogin()">Login</button><p id="loginError" style="color:red;font-weight:700"></p></div>
+<div id="dashBox" style="display:none;margin-top:16px">
+<p><b>Welcome, Owner</b> <span id="showPhone"></span></p>
+<button class="btn btn-grey" onclick="doLogout()">Log Out</button>
+<button class="btn btn-dark" onclick="document.getElementById('passBox').style.display='block'">Change Password</button>
+<div id="passBox" style="display:none;margin-top:12px;background:#FFF0E0;padding:14px;border-radius:12px"><h4>Change Password - Numbers Only</h4><label>Old Password</label><input id="oldPass" inputmode="numeric"><label>New Password</label><input id="newPass" inputmode="numeric"><label>Repeat New Password</label><input id="newPass2" inputmode="numeric"><button class="btn" onclick="changePassword()">Save New Password</button><p id="passMsg" style="font-weight:700"></p></div>
+<h3 style="margin-top:20px">1. Company Logo</h3><div id="currentLogoPreview"></div><label>Choose Logo Photo</label><input type="file" accept="image/*" onchange="uploadLogo(event)"><button class="btn btn-grey" onclick="removeLogo()">Remove Logo - Use Demo Logo</button>
+<h3 style="margin-top:20px">2. Your Phone / WhatsApp Number</h3><input id="editPhone">
+<h3>3. This Week Special</h3><div class="toggle-box"><input type="checkbox" id="editShowSpecial" onchange="toggleSpecialInput()"><b>Show Special On Website? Tick = Show, Untick = Hide</b></div><div id="specialInputBox" style="display:none;margin-top:10px"><label>Write Your Special Here</label><input id="editSpecial"></div>
+<h3>4. Services and Prices</h3><div id="editServices"></div><button class="btn btn-green" onclick="addService()">+ Add Service</button>
+<h3 style="margin-top:20px">5. Gallery Photos</h3><div id="editGallery"></div><label>Add Gallery Photo</label><input type="file" accept="image/*" onchange="addGalleryPhoto(event)">
+<h3 style="margin-top:20px">6. Your Team</h3><div id="editTeam"></div><button class="btn btn-green" onclick="addBrother()">+ Add Team Member</button><br><br>
+<button class="btn" style="width:100%;font-size:17px" onclick="saveAll()">SAVE ALL CHANGES</button><p id="saveMsg" style="color:green;font-weight:800;margin-top:8px"></p><button class="btn btn-grey" style="width:100%;margin-top:10px" onclick="showSite()">Back To Website</button>
+</div></div></div>
+
+<script>
+var OWNER_PHONE = "27744294344";
+var DEFAULT_SERVICES = [
+  {icon:"🎂", name:"Birthday Setup", desc:"Full birthday setup - table, backdrop, balloons, chairs. Beyond expectations.", price:"From R1500"},
+  {icon:"👑", name:"Matric Ball / Matric Prince Setup", desc:"Royal setup for matric prince and princess. Make their day memorable.", price:"From R2500"},
+  {icon:"💍", name:"Wedding / Engagement Setup", desc:"Elegant white and gold wedding styling. Love, family and celebration.", price:"Free Quote"},
+  {icon:"👶", name:"Baby Shower Setup", desc:"Sweet baby shower decor, table and backdrop.", price:"From R1200"},
+  {icon:"🎉", name:"Family Celebration Setup", desc:"For any family party - we set up, you celebrate.", price:"From R1000"},
+  {icon:"🎈", name:"Full Event Planning", desc:"We plan everything - decor, setup, on-site service in Delft.", price:"Free Quote"}
+];
+var DEFAULT_TEAM = [{name:"Ela", role:"Owner and Event Planner", phone:"", photo:""},{name:"Team Member 2", role:"Decorator", phone:"", photo:""},{name:"Team Member 3", role:"Assistant", phone:"", photo:""}];
+var DEFAULT_GALLERY = ["Setup","Setup","Setup","Setup","Setup","Setup"];
+function esc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function getData(){ var d=null; try{ d=JSON.parse(localStorage.getItem("ela_v1")||"null"); }catch(e){ d=null; } if(!d){ d={phone:OWNER_PHONE, services:DEFAULT_SERVICES, team:DEFAULT_TEAM, gallery:DEFAULT_GALLERY, special:"", showSpecial:false, password:"0744294344", logo:""}; localStorage.setItem("ela_v1", JSON.stringify(d)); } return d; }
+function saveData(d){ localStorage.setItem("ela_v1", JSON.stringify(d)); }
+function toggleSpecialInput(){ document.getElementById("specialInputBox").style.display=document.getElementById("editShowSpecial").checked?"block":"none"; }
+function goPage(p){ var pages=document.querySelectorAll(".page"); for(var i=0;i<pages.length;i++){ pages[i].classList.remove("active"); } document.getElementById("page-"+p).classList.add("active"); var btns=document.querySelectorAll("nav button"); for(var j=0;j<btns.length;j++){ btns[j].classList.remove("active"); } document.getElementById("btn-"+p).classList.add("active"); window.scrollTo(0,0); }
+function galleryHTML(){ var d=getData(); var out=""; for(var i=0;i<d.gallery.length;i++){ var g=d.gallery[i]; if(g.indexOf("data:")===0){ out+='<div><img src="'+esc(g)+'"></div>'; } else { out+='<div>'+esc(g)+'</div>'; } } return out; }
+function renderSite(){
+  var d=getData(); var wa="https://wa.me/"+d.phone+"?text="+encodeURIComponent("Hi Ela's Memorable Events, I want to book an event in Delft");
+  document.getElementById("footerWhatsApp").href=wa; document.getElementById("floatWhatsApp").href=wa; document.getElementById("footerCall").href="tel:+"+d.phone; document.getElementById("callText").textContent="0"+d.phone.substring(2);
+  var show=d.showSpecial && d.special && d.special.trim()!==""; document.getElementById("specialHomeBox").style.display=show?"block":"none"; document.getElementById("specialHome").textContent=d.special;
+  var list=document.getElementById("servicesList"); var sel=document.getElementById("serviceSelect"); list.innerHTML=""; sel.innerHTML="";
+  for(var k=0;k<d.services.length;k++){ var s=d.services[k]; var div=document.createElement("div"); div.className="h-card"; var ic=document.createElement("div"); ic.className="icon"; ic.textContent=s.icon||"Event"; var inner=document.createElement("div"); inner.style.flex="1"; var h=document.createElement("h3"); h.textContent=s.name; var p=document.createElement("p"); p.textContent=s.desc; var pr=document.createElement("div"); pr.className="price"; pr.textContent=s.price; var b=document.createElement("button"); b.className="btn"; b.style.marginTop="8px"; b.style.padding="9px 14px"; b.style.fontSize="13px"; b.textContent="Book This"; b.onclick=function(){ goPage("book"); }; inner.appendChild(h); inner.appendChild(p); inner.appendChild(pr); inner.appendChild(b); div.appendChild(ic); div.appendChild(inner); list.appendChild(div); var opt=document.createElement("option"); opt.textContent=s.name+" - "+s.price; sel.appendChild(opt); }
+  document.getElementById("galleryAll").innerHTML=galleryHTML();
+  var tg=document.getElementById("teamGrid"); tg.innerHTML=""; for(var m=0;m<d.team.length;m++){ var mem=d.team[m]; var tc=document.createElement("div"); tc.className="team-card"; var imgHtml=mem.photo?'<img src="'+esc(mem.photo)+'">':'<div class="team-avatar">'+esc(mem.name.charAt(0))+'</div>'; var btnHtml=mem.phone?'<a href="https://wa.me/'+esc(mem.phone)+'" target="_blank" style="display:inline-block;margin-top:8px;background:#25D366;color:#fff;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700">WhatsApp</a>':'<span style="font-size:12px;color:#999">No WhatsApp yet</span>'; tc.innerHTML=imgHtml+'<h4 style="margin-top:8px;color:#3A0A1A">'+esc(mem.name)+'</h4><p style="font-size:13px;color:#666">'+esc(mem.role)+'</p>'+btnHtml; tg.appendChild(tc); }
+}
+function sendWhatsApp(e){ e.preventDefault(); var d=getData(); var text="Hi Ela! I am "+document.getElementById("name").value+" ("+document.getElementById("clientPhone").value+"). I want: "+document.getElementById("serviceSelect").value+" | Type: "+document.getElementById("etype").value+" | Colours: "+document.getElementById("colours").value+" | Guests: "+document.getElementById("guests").value+" | Date: "+document.getElementById("date").value+" | Where: "+document.getElementById("where").value+". Details: "+document.getElementById("msg").value; window.open("https://wa.me/"+d.phone+"?text="+encodeURIComponent(text),"_blank"); }
+function showAdmin(){ document.getElementById("site").style.display="none"; document.getElementById("admin").style.display="block"; window.scrollTo(0,0); if(localStorage.getItem("ela_logged")==="yes"){ showDash(); } }
+function showSite(){ document.getElementById("admin").style.display="none"; document.getElementById("site").style.display="block"; renderSite(); }
+function doLogin(){ var d=getData(); var phone=document.getElementById("loginPhone").value.replace(/\s/g,""); var pass=document.getElementById("loginPass").value.replace(/\s/g,""); if((phone===d.phone.replace("27","0")||phone===d.phone)&&pass===d.password){ localStorage.setItem("ela_logged","yes"); showDash(); } else { document.getElementById("loginError").textContent="Wrong number or password."; } }
+function showDash(){ var d=getData(); document.getElementById("loginBox").style.display="none"; document.getElementById("dashBox").style.display="block"; document.getElementById("showPhone").textContent=d.phone; document.getElementById("editPhone").value=d.phone; document.getElementById("editSpecial").value=d.special||""; document.getElementById("editShowSpecial").checked=!!d.showSpecial; toggleSpecialInput(); document.getElementById("currentLogoPreview").innerHTML=d.logo?'<img src="'+esc(d.logo)+'" class="upload-preview">':'<p class="small">Currently using DEMO logo. Upload yours below.</p>'; renderEditServices(); renderEditTeam(); renderEditGallery(); }
+function renderEditServices(){ var d=getData(); var box=document.getElementById("editServices"); box.innerHTML=""; for(var i=0;i<d.services.length;i++){ var s=d.services[i]; var div=document.createElement("div"); div.className="admin-card"; var l1=document.createElement("label"); l1.textContent="Service "+(i+1)+" Name"; var in1=document.createElement("input"); in1.className="srv-name"; in1.value=s.name; var l2=document.createElement("label"); l2.textContent="Description"; var in2=document.createElement("input"); in2.className="srv-desc"; in2.value=s.desc; var l3=document.createElement("label"); l3.textContent="Price"; var in3=document.createElement("input"); in3.className="srv-price"; in3.value=s.price; var del=document.createElement("button"); del.className="btn btn-grey"; del.textContent="X Delete"; (function(idx){ del.onclick=function(){ deleteService(idx); }; })(i); div.appendChild(l1); div.appendChild(in1); div.appendChild(l2); div.appendChild(in2); div.appendChild(l3); div.appendChild(in3); div.appendChild(del); box.appendChild(div); } }
+function renderEditTeam(){ var d=getData(); var box=document.getElementById("editTeam"); box.innerHTML=""; for(var i=0;i<d.team.length;i++){ var m=d.team[i]; var div=document.createElement("div"); div.className="admin-card"; var l1=document.createElement("label"); l1.textContent="Team "+(i+1)+" - Name"; var in1=document.createElement("input"); in1.className="team-name"; in1.value=m.name; var l2=document.createElement("label"); l2.textContent="Job / Role"; var in2=document.createElement("input"); in2.className="team-role"; in2.value=m.role; var l3=document.createElement("label"); l3.textContent="Their WhatsApp (with 27)"; var in3=document.createElement("input"); in3.className="team-phone"; in3.value=m.phone; var del=document.createElement("button"); del.className="btn btn-grey"; del.textContent="X Remove"; (function(idx){ del.onclick=function(){ deleteBrother(idx); }; })(i); div.appendChild(l1); div.appendChild(in1); div.appendChild(l2); div.appendChild(in2); div.appendChild(l3); div.appendChild(in3); if(m.photo){ var im=document.createElement("img"); im.src=m.photo; im.className="upload-preview"; div.appendChild(im); } var file=document.createElement("input"); file.type="file"; file.accept="image/*"; (function(idx){ file.onchange=function(ev){ uploadBrotherPhoto(ev,idx); }; })(i); div.appendChild(file); div.appendChild(del); box.appendChild(div); } }
+function renderEditGallery(){ var d=getData(); var box=document.getElementById("editGallery"); box.innerHTML=""; for(var i=0;i<d.gallery.length;i++){ var g=d.gallery[i]; var div=document.createElement("div"); div.className="admin-card"; if(g.indexOf("data:")===0){ var im=document.createElement("img"); im.src=g; im.className="upload-preview"; div.appendChild(im); } else { var dv=document.createElement("div"); dv.style.fontSize="28px"; dv.style.textAlign="center"; dv.textContent=g; div.appendChild(dv); } var del=document.createElement("button"); del.className="btn btn-grey"; del.textContent="X Delete Photo"; (function(idx){ del.onclick=function(){ deleteGallery(idx); }; })(i); div.appendChild(del); box.appendChild(div); } }
+function addService(){ var d=getData(); d.services.push({icon:"Event",name:"New Service",desc:"Describe it",price:"From R0"}); saveData(d); renderEditServices(); }
+function deleteService(i){ if(!confirm("Delete this service?")) return; var d=getData(); d.services.splice(i,1); saveData(d); renderEditServices(); }
+function addBrother(){ var d=getData(); d.team.push({name:"New Member",role:"Decorator",phone:"",photo:""}); saveData(d); renderEditTeam(); }
+function deleteBrother(i){ if(!confirm("Remove this member?")) return; var d=getData(); d.team.splice(i,1); saveData(d); renderEditTeam(); }
+function addGalleryPhoto(e){ var f=e.target.files[0]; if(!f) return; var r=new FileReader(); r.onload=function(){ var d=getData(); d.gallery.push(r.result); saveData(d); renderEditGallery(); renderSite(); }; r.readAsDataURL(f); }
+function deleteGallery(i){ var d=getData(); d.gallery.splice(i,1); saveData(d); renderEditGallery(); renderSite(); }
+function uploadLogo(e){ var f=e.target.files[0]; if(!f) return; var r=new FileReader(); r.onload=function(){ var d=getData(); d.logo=r.result; saveData(d); document.getElementById("currentLogoPreview").innerHTML='<img src="'+esc(d.logo)+'" class="upload-preview">'; renderSite(); alert("Logo uploaded!"); }; r.readAsDataURL(f); }
+function removeLogo(){ var d=getData(); d.logo=""; saveData(d); document.getElementById("currentLogoPreview").innerHTML='<p class="small">Demo logo restored.</p>'; renderSite(); }
+function uploadBrotherPhoto(e,i){ var f=e.target.files[0]; if(!f) return; var r=new FileReader(); r.onload=function(){ var d=getData(); d.team[i].photo=r.result; saveData(d); renderEditTeam(); renderSite(); }; r.readAsDataURL(f); }
+function saveAll(){ var d=getData(); d.phone=document.getElementById("editPhone").value.replace(/\s/g,"").replace(/^\+/,""); d.special=document.getElementById("editSpecial").value; d.showSpecial=document.getElementById("editShowSpecial").checked; var names=document.querySelectorAll(".srv-name"); var descs=document.querySelectorAll(".srv-desc"); var prices=document.querySelectorAll(".srv-price"); var ns=[]; for(var k=0;k<names.length;k++){ ns.push({icon:"Event",name:names[k].value,desc:descs[k].value,price:prices[k].value}); } d.services=ns; var tnames=document.querySelectorAll(".team-name"); var troles=document.querySelectorAll(".team-role"); var tphones=document.querySelectorAll(".team-phone"); var nt=[]; for(var j=0;j<tnames.length;j++){ nt.push({name:tnames[j].value,role:troles[j].value,phone:tphones[j].value,photo:d.team[j]?d.team[j].photo:""}); } d.team=nt; saveData(d); document.getElementById("saveMsg").textContent="Saved! Website updated."; renderSite(); }
+function changePassword(){ var d=getData(); var o=document.getElementById("oldPass").value.trim(); var n=document.getElementById("newPass").value.trim(); var n2=document.getElementById("newPass2").value.trim(); if(o!==d.password){ document.getElementById("passMsg").style.color="red"; document.getElementById("passMsg").textContent="Old password wrong."; return; } if(!/^[0-9]+$/.test(n)){ document.getElementById("passMsg").style.color="red"; document.getElementById("passMsg").textContent="Numbers only."; return; } if(n!==n2){ document.getElementById("passMsg").style.color="red"; document.getElementById("passMsg").textContent="Passwords do not match."; return; } d.password=n; saveData(d); document.getElementById("passMsg").style.color="green"; document.getElementById("passMsg").textContent="Password changed!"; }
+function doLogout(){ localStorage.removeItem("ela_logged"); location.reload(); }
+if(location.hash==="#admin"){ showAdmin(); }
+renderSite();
+</script>
+</body>
+</html>
